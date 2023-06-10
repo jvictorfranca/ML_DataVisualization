@@ -1,6 +1,7 @@
 import pandas as pd
 
 vehicles = pd.read_csv('Datasets/vehicles.csv')
+titanic = pd.read_csv('Datasets/titanic.csv')
 
 # Gets initial info of dataframe
 info = vehicles.info()
@@ -36,3 +37,7 @@ print(filtered)
     # Or filter using pandas .loc
 filtered_loc = vehicles.loc[mask, :]
 print(filtered_loc)
+
+# Use groupby to see relations on 0 or 1 values:
+survivability_by_Cabin = titanic.groupby(titanic['Cabin'].isnull())['Survived'].mean()
+print(survivability_by_Cabin)
